@@ -1,0 +1,146 @@
+<html>
+
+<head>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+        }
+
+        scene {
+            width: 118vmin;
+            height: 98vmin;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <title>帰ってきたガンマンで早撃ちしましょマジでマジで</title>
+    <link rel="stylesheet" href="style.css">
+    <input type="button" value="はじめる" id="sb" onclick="start()">
+    <input type="button" value="説明" id="setumeib" onclick="setumeiIn()">
+    <input type="button" value="戻る" id="bb" onclick="back()">
+    <div id="title"></div>
+    <div id="subtitle"></div>
+    <div id="text"></div>
+    <script>
+        const scene = document.createElement('scene');
+        document.body.appendChild(scene);
+        const title = document.getElementById('title');
+        const subtitle = document.getElementById('subtitle');
+        const sb = document.getElementById('sb');
+        const bb = document.getElementById('bb');
+        const setumeib = document.getElementById('setumeib');
+        let se = new Audio('決定.mp3');
+        let text = document.getElementById('text');
+        let timer;
+        let time = 0;
+        let timer2;
+        let time2 = 0
+
+        title.innerText = "帰ってきたガンマンで早撃ちしましょ\nマジでマジで";
+        subtitle.innerText = "ただいま。";
+        bb.style.display = 'none';
+        text.innerText = "READY";
+        text.style.display = 'none';
+        let words = ["Fire!", "Flower(花)", "Fly(飛ぶ)", "Festival(祭り)", "File(ファイル)",
+            "Friend(友達)", "Food(食べ物)", "Floor(床)"];
+        let word = Math.floor(Math.random() * words.length);
+        function start() {
+            se.play();
+            title.style.display = 'none';
+            subtitle.style.display = 'none';
+            sb.style.display = 'none';
+            setumeib.style.display = 'none';
+            timer = setInterval(game, 1000);
+
+        }
+
+        function setumeiIn() {
+            se.play();
+            subtitle.style.display = 'none';
+            sb.style.display = 'none';
+            setumeib.style.display = 'none';
+            bb.style.display = 'block';
+            title.innerText = "このゲームは早撃ちゲームです\n「FIRE」のタイミングで、\n1Pの人は「F」\n 2Pの人は「J」\nを押してください。\n 早く撃った方が勝ちです。"
+        }
+        function back() {
+            se.play();
+            title.innerText = "帰ってきたガンマンで早撃ちしましょ\nマジでマジで";
+            subtitle.style.display = 'block';
+            sb.style.display = 'block';
+            setumeib.style.display = 'block';
+            bb.style.display = 'none';
+        }
+        function game() {
+            time++;
+            if (time === 1) {
+                text.style.display = 'block';
+                const uttr = new SpeechSynthesisUtterance("Ready")
+                uttr.lang = "en-GB"
+                speechSynthesis.speak(uttr)
+            }
+            if (time === 2) {
+                const uttr = new SpeechSynthesisUtterance("starting")
+                uttr.lang = "en-GB"
+                speechSynthesis.speak(uttr)
+            }
+            if (time === 3) {
+                timer2 = setInterval(shot, 1900)
+            }
+        }
+        function shot() {
+            word = Math.floor(Math.random() * words.length);
+            text.innerText = words[word]
+            const uttr = new SpeechSynthesisUtterance(words[word])
+            uttr.lang = "en-GB"
+            speechSynthesis.speak(uttr)
+            console.log(word);
+            if (word === 0) {
+                Fire();
+                clearInterval(timer2);
+            }
+        }
+        document.addEventListener('keydown', (event) => {
+                if (event.keyCode === 70) {
+                    console.log("1P Push");
+                    if (word === 0) {
+                        alert("1Pの勝ち")
+                        location.reload()
+                    }else {
+                        alert("1P失格　2Pの勝ち")
+                        location.reload()
+                    }
+                }
+                if (event.keyCode === 74) {
+                    console.log("2P Push");
+                    if (word === 0) {
+                        alert("2Pの勝ち")
+                        location.reload()
+                    }else {
+                        alert("2P失格　1Pの勝ち")
+                        location.reload()
+                    }
+                }
+            })
+       
+    </script>
+</body>
+
+</html>

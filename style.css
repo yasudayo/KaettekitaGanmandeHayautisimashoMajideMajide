@@ -1,0 +1,55 @@
+#title {
+    position: absolute;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 750px;
+    height: auto;
+    font-weight: 900;
+    font-size: 40;
+    top: 20%;
+}
+#subtitle {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 750px;
+    height: auto;
+    font-weight: 400;
+    font-size: 30;
+    text-align: center;
+    bottom: 30%;
+}
+#sb {
+    position: absolute;
+    text-align: center;
+    left: 40%;
+    bottom: 20%;
+    display: flex;
+    flex-direction: column;
+}
+#setumeib {
+    position: absolute;
+    text-align: center;
+    right: 40%;
+    bottom: 20%;
+    display: flex;
+    flex-direction: column;
+}
+#bb {
+    position: absolute;
+    text-align: center;
+    bottom: 15%;
+    display: flex;
+    flex-direction: column;
+}
+#text {
+    position: absolute;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 750px;
+    height: auto;
+    font-weight: 900;
+    font-size: 60;
+}
